@@ -15,7 +15,7 @@ public class E2P1_DiegoCruz {
      */
     public static void main(String[] args) {
         
-        MenuE2 men = new MenuE2();
+        MenuE2 men = new MenuE2();//Llamado del menu al main. La clase de menu incluye los switch cases y los ActionEvents de los botones
     }
     
 }

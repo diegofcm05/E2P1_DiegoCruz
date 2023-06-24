@@ -10,11 +10,11 @@ package e2p1_diegocruz;
  */
 public class Numero {
     
-    int base;
-    String numero;
+    private int base;
+    private String numero;
     
     
-    public Numero(){
+    public Numero(){//Constructor Vacio
         
     }
     

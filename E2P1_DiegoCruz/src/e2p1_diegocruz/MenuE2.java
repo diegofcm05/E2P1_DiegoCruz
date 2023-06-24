@@ -70,7 +70,7 @@ public class MenuE2 extends JFrame implements ActionListener{// Creacion del fra
             this.setVisible(false);
             boolean resp = true;
             while(resp){
-                int op = Integer.parseInt(JOptionPane.showInputDialog(null, "Menu Numeros\n1. Agregar Numero\n2. Eliminar Numero\n3. Menu Principal"));
+                int op = Integer.parseInt(JOptionPane.showInputDialog(null, "Menu Numeros\n1. Agregar Numero\n2. Eliminar Numero\n3. Listar Numeros\n4. Menu Principal"));
                 switch (op){
                     case 1:// Caso 1.1 Agregar Numero
                     {
@@ -84,27 +84,42 @@ public class MenuE2 extends JFrame implements ActionListener{// Creacion del fra
                         }
                         Numero nuevonum = new Numero(base,num);
                         numbers.add(nuevonum);
-                        JOptionPane.showMessageDialog(null, "El numero ha sido agregado exitosamente");
+                        JOptionPane.showMessageDialog(null, "El numero ha sido agregado exitosamente!");
                         break;
                     }
                     case 2: // Caso 1.2 Eliminar Numero
                     {
                         if (numbers.isEmpty()){
-                            JOptionPane.showMessageDialog(null,"No tiene numeros agregados que pueda eliminar. Por favor agregue mas numeros");
+                            JOptionPane.showMessageDialog(null,"No tiene numeros agregados que pueda eliminar. Por favor agregue mas numeros.");
                         }
                         else{
                             String listab = listanums(numbers);
-                            int opc = Integer.parseInt(JOptionPane.showInputDialog(null,listab+"\nIngrese el indice del numero que desea eliminar."));
-                            while (opc < 1 || opc > numbers.size()){
-                                opc = Integer.parseInt(JOptionPane.showInputDialog(null,listab+"\nIngrese un indice valido."));
+                            int opc = Integer.parseInt(JOptionPane.showInputDialog(null,listab+"\nIngrese el indice del numero que desea eliminar.\n Ingrese un cero para cancelar."));
+                            while (opc < 0 || opc > numbers.size()){
+                                opc = Integer.parseInt(JOptionPane.showInputDialog(null,listab+"\nIngrese un indice valido.\n Ingrese un cero para cancelar."));
                             }
+                            if(opc==0){
+                                break;
+                            }
+                            else{
                             numbers.remove(opc-1);
                             JOptionPane.showMessageDialog(null, "El numero ha sido elimnado exitosamente.");
+                            }
                         }
                         break;
 
                     }
-                    case 3:
+                    case 3://1.3 Listar numeros actuales
+                    {
+                        if (numbers.isEmpty()){
+                            JOptionPane.showMessageDialog(null,"No tiene numeros agregados para listar. Por favor agregue mas numeros.");
+                        }
+                        else{
+                            JOptionPane.showMessageDialog(null, listanums(numbers));
+                        }
+                        break;
+                    }
+                    case 4:// 1.4 Salir
                     {
                         resp = false;
                         this.setVisible(true);
@@ -129,7 +144,7 @@ public class MenuE2 extends JFrame implements ActionListener{// Creacion del fra
                     case 1:
                     {
                         if (numbers.isEmpty()){
-                            JOptionPane.showMessageDialog(null,"No tiene numeros agregados que pueda eliminar. Por favor agregue mas numeros");
+                            JOptionPane.showMessageDialog(null,"No tiene numeros agregados que pueda sumar. Por favor agregue mas numeros.");
                         }
                         else{
                             int escoge = Integer.parseInt(JOptionPane.showInputDialog(null,listanums(numbers)+"\nIngrese el indice del primer numero:"));
@@ -150,7 +165,7 @@ public class MenuE2 extends JFrame implements ActionListener{// Creacion del fra
                     case 2:
                     {
                         if (numbers.isEmpty()){
-                            JOptionPane.showMessageDialog(null,"No tiene numeros agregados que pueda eliminar. Por favor agregue mas numeros");
+                            JOptionPane.showMessageDialog(null,"No tiene numeros agregados que pueda restar. Por favor agregue mas numeros.");
                         }
                         else{
                             int escoge = Integer.parseInt(JOptionPane.showInputDialog(null,listanums(numbers)+"\nIngrese el indice del primer numero:"));
@@ -175,7 +190,7 @@ public class MenuE2 extends JFrame implements ActionListener{// Creacion del fra
                     case 3:
                     {
                         if (numbers.isEmpty()){
-                            JOptionPane.showMessageDialog(null,"No tiene numeros agregados que pueda eliminar. Por favor agregue mas numeros");
+                            JOptionPane.showMessageDialog(null,"No tiene numeros agregados que pueda multiplicar. Por favor agregue mas numeros.");
                         }
                         else{
                             int escoge = Integer.parseInt(JOptionPane.showInputDialog(null,listanums(numbers)+"\nIngrese el indice del primer numero:"));
@@ -188,7 +203,7 @@ public class MenuE2 extends JFrame implements ActionListener{// Creacion del fra
                             }
                             int multi = numbers.get(escoge-1).baseToDec(numbers.get(escoge-1).getNumero()) * numbers.get(escoge2-1).baseToDec(numbers.get(escoge2-1).getNumero());
                             Numero num = new Numero(Math.max(numbers.get(escoge-1).getBase(), numbers.get(escoge2-1).getBase()),multi);
-                            JOptionPane.showMessageDialog(null, "El resultado de la multiplicacion es: "+num.getNumero()+" en base "+num.getBase()+": "+multi);
+                            JOptionPane.showMessageDialog(null, "El resultado de la multiplicacion es "+num.getNumero()+" en base "+num.getBase()+": "+multi);
                         }
                         break;
                     }
@@ -207,6 +222,7 @@ public class MenuE2 extends JFrame implements ActionListener{// Creacion del fra
             }
         } 
         else if (e.getSource() == boton3) {// Caso 3 - Salir
+            JOptionPane.showMessageDialog(null, "Gracias por todo instructores, son los mejores!!\nA continuacion saldra del programa.");
             System.exit(0);
         }
     }
@@ -221,7 +237,6 @@ public class MenuE2 extends JFrame implements ActionListener{// Creacion del fra
         return listaA;
         
     }
-    
     
 
     
